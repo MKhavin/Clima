@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  Clima
-//
-//  Created by Michael Khavin on 17.07.2022.
-//
-
 import UIKit
 
 @main

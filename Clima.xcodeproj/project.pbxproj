@@ -9,21 +9,23 @@
 /* Begin PBXBuildFile section */
 		5160C14728846D5B00BFE409 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5160C14628846D5B00BFE409 /* AppDelegate.swift */; };
 		5160C14928846D5B00BFE409 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5160C14828846D5B00BFE409 /* SceneDelegate.swift */; };
-		5160C14B28846D5B00BFE409 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5160C14A28846D5B00BFE409 /* ViewController.swift */; };
-		5160C14E28846D5B00BFE409 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5160C14C28846D5B00BFE409 /* Main.storyboard */; };
+		5160C14B28846D5B00BFE409 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5160C14A28846D5B00BFE409 /* WeatherViewController.swift */; };
 		5160C15028846D5D00BFE409 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5160C14F28846D5D00BFE409 /* Assets.xcassets */; };
 		5160C15328846D5D00BFE409 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5160C15128846D5D00BFE409 /* LaunchScreen.storyboard */; };
+		5160C15E2884712800BFE409 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5160C15D2884712800BFE409 /* WeatherView.swift */; };
+		5160C1612884718200BFE409 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5160C1602884718200BFE409 /* UIViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5160C14328846D5B00BFE409 /* Clima.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clima.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5160C14628846D5B00BFE409 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5160C14828846D5B00BFE409 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5160C14A28846D5B00BFE409 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		5160C14D28846D5B00BFE409 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5160C14A28846D5B00BFE409 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		5160C14F28846D5D00BFE409 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5160C15228846D5D00BFE409 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5160C15428846D5D00BFE409 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5160C15D2884712800BFE409 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
+		5160C1602884718200BFE409 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +58,48 @@
 		5160C14528846D5B00BFE409 /* Clima */ = {
 			isa = PBXGroup;
 			children = (
+				5160C15F2884717100BFE409 /* Extensions */,
+				5160C15A28846DF600BFE409 /* Model */,
+				5160C15B28846E9400BFE409 /* View */,
+				5160C15C28846E9800BFE409 /* Controller */,
 				5160C14628846D5B00BFE409 /* AppDelegate.swift */,
 				5160C14828846D5B00BFE409 /* SceneDelegate.swift */,
-				5160C14A28846D5B00BFE409 /* ViewController.swift */,
-				5160C14C28846D5B00BFE409 /* Main.storyboard */,
 				5160C14F28846D5D00BFE409 /* Assets.xcassets */,
 				5160C15128846D5D00BFE409 /* LaunchScreen.storyboard */,
 				5160C15428846D5D00BFE409 /* Info.plist */,
 			);
 			path = Clima;
+			sourceTree = "<group>";
+		};
+		5160C15A28846DF600BFE409 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5160C15B28846E9400BFE409 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5160C15D2884712800BFE409 /* WeatherView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5160C15C28846E9800BFE409 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5160C14A28846D5B00BFE409 /* WeatherViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		5160C15F2884717100BFE409 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5160C1602884718200BFE409 /* UIViewExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +162,6 @@
 			files = (
 				5160C15328846D5D00BFE409 /* LaunchScreen.storyboard in Resources */,
 				5160C15028846D5D00BFE409 /* Assets.xcassets in Resources */,
-				5160C14E28846D5B00BFE409 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +172,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5160C14B28846D5B00BFE409 /* ViewController.swift in Sources */,
+				5160C1612884718200BFE409 /* UIViewExtension.swift in Sources */,
+				5160C14B28846D5B00BFE409 /* WeatherViewController.swift in Sources */,
 				5160C14728846D5B00BFE409 /* AppDelegate.swift in Sources */,
 				5160C14928846D5B00BFE409 /* SceneDelegate.swift in Sources */,
+				5160C15E2884712800BFE409 /* WeatherView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		5160C14C28846D5B00BFE409 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5160C14D28846D5B00BFE409 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5160C15128846D5D00BFE409 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -292,9 +320,8 @@
 				INFOPLIST_FILE = Clima/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -320,9 +347,8 @@
 				INFOPLIST_FILE = Clima/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
