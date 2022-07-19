@@ -2,7 +2,7 @@ import UIKit
 
 class WeatherView: UIView {
     // MARK: UI Elements
-    lazy var backgroundImageView: UIImageView = {
+    private(set) lazy var backgroundImageView: UIImageView = {
         let imageName = traitCollection.userInterfaceStyle == .dark ? "backgroundDark" : "backgroundLight"
         let view = UIImageView(image: UIImage(named: imageName))
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -10,13 +10,15 @@ class WeatherView: UIView {
         return view
     }()
     
-    lazy var searchBar: UISearchBar = {
+    private(set) lazy var searchBar: UISearchBar = {
         let view = UISearchBar()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.placeholder = "Search"
         view.backgroundImage = UIImage()
         view.backgroundColor = .clear
         view.barTintColor = .clear
+        view.autocapitalizationType = .words
+        view.returnKeyType = .go
         return view
     }()
     
@@ -40,7 +42,7 @@ class WeatherView: UIView {
         return stack
     }()
     
-    lazy var searchCurrentLocationButton: UIButton = {
+    private(set) lazy var searchCurrentLocationButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "location.circle.fill"),
                         for: .normal)
@@ -52,7 +54,7 @@ class WeatherView: UIView {
         return button
     }()
     
-    lazy var searchButton: UIButton = {
+    private(set) lazy var searchButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "magnifyingglass"),
                         for: .normal)
@@ -64,7 +66,7 @@ class WeatherView: UIView {
         return button
     }()
     
-    lazy var weatherConditionImageView: UIImageView = {
+    private(set) lazy var weatherConditionImageView: UIImageView = {
         let view = UIImageView(image: UIImage(systemName: "sun.max"))
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = .label
@@ -72,7 +74,7 @@ class WeatherView: UIView {
         return view
     }()
     
-    lazy var cityLabel: UILabel = {
+    private(set) lazy var cityLabel: UILabel = {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.text = "City"
@@ -90,7 +92,7 @@ class WeatherView: UIView {
         return view
     }()
     
-    lazy var temperatureLabel: UILabel = {
+    private(set) lazy var temperatureLabel: UILabel = {
         let view = UILabel()
         view.text = "21"
         view.font = .systemFont(ofSize: 80, weight: .black)
