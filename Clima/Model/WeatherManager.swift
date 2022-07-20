@@ -32,10 +32,26 @@ struct WeatherManager {
     
     mutating func fetchWeather(cityName: String) {
         weatherURL.queryItems?.removeAll { item in
-            item.name == "q"
+            item.name == "lat" || item.name == "lon" || item.name == "q"
         }
         weatherURL.queryItems?.append(URLQueryItem(name: "q",
                                                    value: cityName))
+        guard let url = weatherURL.url else {
+            return
+        }
+    
+        performRequest(with: url)
+    }
+    
+    mutating func fetchWeather(latitude: String, longtitude: String) {
+        weatherURL.queryItems?.removeAll { item in
+            item.name == "lat" || item.name == "lon" || item.name == "q"
+        }
+        weatherURL.queryItems?.append(URLQueryItem(name: "lat",
+                                                   value: latitude))
+        weatherURL.queryItems?.append(URLQueryItem(name: "lon",
+                                                   value: longtitude))
+        
         guard let url = weatherURL.url else {
             return
         }
@@ -68,8 +84,8 @@ struct WeatherManager {
         do {
             let decodedData = try decoder.decode(WeatherData.self, from: weatherData)
             return WeatherModel(cityName: decodedData.name,
-                                   conditionId: decodedData.weather[0].id,
-                                   temperature: decodedData.main.temp)
+                                conditionId: decodedData.weather[0].id,
+                                temperature: decodedData.main.temp)
         } catch {
             delegate?.didFailWith(error: error)
             return nil

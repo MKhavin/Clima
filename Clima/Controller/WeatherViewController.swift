@@ -1,9 +1,16 @@
 import UIKit
+import CoreLocation
 
 class WeatherViewController: UIViewController {
     // MARK: Properties
     private lazy var weatherManager: WeatherManager = {
         var manager = WeatherManager()
+        manager.delegate = self
+        return manager
+    }()
+    
+    private lazy var locationManager: CLLocationManager = {
+        let manager = CLLocationManager()
         manager.delegate = self
         return manager
     }()
@@ -19,7 +26,8 @@ class WeatherViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         setSubViewsDelegatesAndActions()
-        weatherManager.fetchWeather(cityName: "Moscow")
+        locationManager.requestWhenInUseAuthorization()
+//        weatherManager.fetchWeather(cityName: "Moscow")
     }
     
     // MARK: Sub functions
@@ -47,6 +55,10 @@ class WeatherViewController: UIViewController {
         currentView.searchButton.addTarget(self,
                                            action: #selector(searchButtonTouched(_:)),
                                            for: .touchUpInside)
+        
+        currentView.searchCurrentLocationButton.addTarget(self,
+                                                          action: #selector(locationButtonTouched(_:)),
+                                                          for: .touchUpInside)
     }
     
     // MARK: Actions
@@ -57,6 +69,10 @@ class WeatherViewController: UIViewController {
         
         weatherManager.fetchWeather(cityName: currentView.searchBar.text ?? "")
         currentView.searchButton.resignFirstResponder()
+    }
+    
+    @objc private func locationButtonTouched(_ sender: UIButton) {
+        locationManager.requestLocation()
     }
 }
 
@@ -94,5 +110,51 @@ extension WeatherViewController: WeatherManagerDelegate {
     
     func didFailWith(error: Error) {
         print(error)
+    }
+}
+
+// MARK: CoreLocationDelegate
+extension WeatherViewController: CLLocationManagerDelegate {
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        let authorizationStatus: CLAuthorizationStatus
+        
+        if #available(iOS 14, *) {
+            authorizationStatus = manager.authorizationStatus
+        } else {
+            authorizationStatus = CLLocationManager.authorizationStatus()
+        }
+        
+        switch authorizationStatus {
+        case .notDetermined:
+            break
+        case .restricted, .denied:
+            guard let currentView = view as? WeatherView else {
+                break
+            }
+            
+            currentView.cityLabel.text = "Nah"
+            currentView.temperatureLabel.text = "Nah"
+            currentView.weatherConditionImageView.image = UIImage(systemName: "questionmark.app")
+        case .authorizedAlways, .authorizedWhenInUse:
+            manager.requestLocation()
+        @unknown default:
+            fatalError("Authorization status isn't exist.")
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard locations.count > 0 else {
+            return
+        }
+        
+        manager.stopUpdatingLocation()
+        if let location = locations.last {
+            weatherManager.fetchWeather(latitude: location.coordinate.latitude.description,
+                                        longtitude: location.coordinate.longitude.description)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error.localizedDescription)
     }
 }
